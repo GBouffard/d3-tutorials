@@ -15,10 +15,10 @@ const ChartContainer = styled.div`
 `
 
 const BarChart = ({ dataSet = defaultData, color = defaultColor }) => {
-  const anchor = useRef()
+  const reference = useRef()
 
   useEffect(() => {
-    d3.select(anchor.current)
+    d3.select(reference.current)
       .selectAll('div')
       .data(dataSet)
       .enter()
@@ -26,7 +26,7 @@ const BarChart = ({ dataSet = defaultData, color = defaultColor }) => {
       .style('height', d => d + 'px')
   })
 
-  return <ChartContainer ref={anchor} color={color} />
+  return <ChartContainer ref={reference} color={color} />
 }
 
 export default BarChart
