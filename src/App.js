@@ -1,5 +1,15 @@
-import React from "react";
+import React, { Fragment } from 'react'
 
-const App = () => <div>Placeholder for d3.js tutorials</div>;
+import Hr from './hr'
 
-export default App;
+import BarChart from './bar-chart'
+
+const App = () => (
+  <Fragment>
+    <div>Bar chart: </div>
+    <BarChart />
+    <Hr />
+  </Fragment>
+)
+
+export default App
