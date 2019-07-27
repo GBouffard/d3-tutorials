@@ -6,6 +6,7 @@ import BarChart from './d3components/bar-chart'
 import ContributionChart from './d3components/contribution-chart'
 import CircleSizesXChart from './d3components/circle-sizes-x-chart'
 import LinesChart from './d3components/lines-chart'
+import LinesAreasChart from './d3components/lines-areas-chart'
 
 const App = () => (
   <Fragment>
@@ -18,8 +19,11 @@ const App = () => (
     <div>Circle sizes x chart: </div>
     <CircleSizesXChart />
     <Hr />
-    <div>Line and scale chart: </div>
+    <div>Lines chart: </div>
     <LinesChart />
+    <Hr />
+    <div>Lines areas chart: </div>
+    <LinesAreasChart />
     <Hr />
   </Fragment>
 )

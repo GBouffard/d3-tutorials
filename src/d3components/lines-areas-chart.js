@@ -4,31 +4,21 @@ import styled from 'styled-components'
 
 // the following values are by default pixels as well so height/width of the SVG need to be able to include these
 const defaultDataOne = [
-  [0, 80],
+  [0, 20],
   [100, 100],
-  [200, 30],
+  [200, 130],
   [300, 50],
-  [400, 40],
+  [400, 180],
   [500, 80]
 ]
 
-// y axis seems to go downward by default
 const defaultDataTwo = [
-  [0, 180],
-  [100, 120],
-  null,
-  [300, 70],
-  [400, 90],
-  [500, 100]
-]
-
-const defaultDataThree = [
-  [0, 50],
-  [100, 150],
-  [200, 180],
-  [300, 10],
-  [400, 160],
-  [500, 120]
+  { x: 0, low: 30, high: 80 },
+  { x: 100, low: 80, high: 100 },
+  { x: 200, low: 20, high: 30 },
+  { x: 300, low: 20, high: 50 },
+  { x: 400, low: 10, high: 40 },
+  { x: 500, low: 50, high: 80 }
 ]
 
 const StyledSvg = styled.svg`
@@ -37,49 +27,50 @@ const StyledSvg = styled.svg`
     fill: transparent;
   }
   #pathOne {
-    stroke: blue;
+    stroke: black;
+    fill: yellow;
   }
 
   #pathTwo {
-    stroke: green;
-  }
-
-  #pathThree {
-    stroke: red;
+    stroke: darkred;
+    fill: pink;
   }
 `
 
-const LinesChart = ({
+const LinesAreasChart = ({
   dataOne = defaultDataOne,
   dataTwo = defaultDataTwo,
-  dataThree = defaultDataThree,
   width = '600px',
   height = '200px'
 }) => {
   const svgRef = useRef()
 
-  useEffect(() => {
-    const lineGenerator = d3.line()
-    const lineGeneratorWithGaps = d3.line().defined(d => d !== null)
-    const curvedLineGenerator = d3.line().curve(d3.curveCardinal)
+  const areaGenerator = d3.area() // .y0(100); option to configure the yo line
 
+  // y axis seems to go downward by default
+  const yScale = d3
+    .scaleLinear()
+    .domain([0, 100])
+    .range([200, 0])
+
+  const areaGeneratorLowAndHigh = d3
+    .area()
+    .x(d => d.x)
+    .y0(d => yScale(d.low))
+    .y1(d => yScale(d.high))
+
+  useEffect(() => {
     d3.select(svgRef.current)
       .append('path')
       .attr('id', 'pathOne')
       .attr('stroke-width', 2)
-      .attr('d', lineGenerator(dataOne))
+      .attr('d', areaGenerator(dataOne))
 
     d3.select(svgRef.current)
       .append('path')
       .attr('id', 'pathTwo')
       .attr('stroke-width', 2)
-      .attr('d', lineGeneratorWithGaps(dataTwo))
-
-    d3.select(svgRef.current)
-      .append('path')
-      .attr('id', 'pathThree')
-      .attr('stroke-width', 2)
-      .attr('d', curvedLineGenerator(dataThree))
+      .attr('d', areaGeneratorLowAndHigh(dataTwo))
   })
 
   return (
@@ -92,4 +83,4 @@ const LinesChart = ({
   )
 }
 
-export default LinesChart
+export default LinesAreasChart
