@@ -4,53 +4,55 @@ import styled from 'styled-components'
 
 // value need to be with 0 and 2 * Math.PI
 const defaultData = [
-  { label: 'A', color: 'red', startAngle: 0, endAngle: 0.2 },
-  { label: 'B', color: 'green', startAngle: 0.2, endAngle: 0.6 },
-  { label: 'C', color: 'blue', startAngle: 0.6, endAngle: 1.4 },
-  { label: 'D', color: 'pink', startAngle: 1.4, endAngle: 3 },
-  { label: 'E', startAngle: 3, endAngle: 2 * Math.PI }
+  { name: 'Apples', color: 'red', quantity: 20 },
+  { name: 'Bananas', color: 'green', quantity: 40 },
+  { name: 'Cherries', color: 'cyan', quantity: 50 },
+  { name: 'Damsons', color: 'sand', quantity: 10 },
+  { name: 'Elderberries', quantity: 30 }
 ]
 
 const Styledg = styled.g`
-  fill: orange;
   stroke: white;
 
   > text {
-    font-family: "Helvetica Neue", Helvetica, sans-serif;
-    font-size: 12px;
+    font-family: "Verdana", Helvetica, sans-serif;
+    font-size: 10px;
     fill: white;
     text-anchor: middle;
   }
 `
 
-const ArcChart = ({
+const PieChart = ({
   data = defaultData,
   HeightAndWidth = '200',
-  defaultColor = 'orange'
+  defaultColor = 'purple'
 }) => {
   const gRef = useRef()
 
+  const pieGenerator = d3
+    .pie()
+    .value(d => d.quantity)
+    .sort((a, b) => a.name.localeCompare(b.name))
+
   const arcGenerator = d3
     .arc()
-    .innerRadius(HeightAndWidth / 10) // inner radius
-    .outerRadius(HeightAndWidth / 2) // outer radius
-    .startAngle(d => d.startAngle)
-    .endAngle(d => d.endAngle)
+    .innerRadius(20)
+    .outerRadius(100)
 
   useEffect(() => {
     // set the areas
     d3.select(gRef.current)
       .selectAll('path')
-      .data(data)
+      .data(pieGenerator(data))
       .enter()
       .append('path')
       .attr('d', arcGenerator)
-      .style('fill', d => d.color || defaultColor)
+      .style('fill', d => d.data.color || defaultColor)
 
     // set the areas labels / text .centroid() is used to compute the label positions
     d3.select(gRef.current)
       .selectAll('text')
-      .data(data)
+      .data(pieGenerator(data))
       .enter()
       .append('text')
       // nb: not using arrow functions in that case to make sure that 'this' correspond to the text below
@@ -60,7 +62,7 @@ const ArcChart = ({
           .attr('x', centroid[0])
           .attr('y', centroid[1])
           .attr('dy', '0.33em')
-          .text(d.label)
+          .text(d.data.name)
       })
   })
 
@@ -74,4 +76,4 @@ const ArcChart = ({
   )
 }
 
-export default ArcChart
+export default PieChart

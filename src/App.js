@@ -9,6 +9,7 @@ import LinesChart from './d3components/lines-chart'
 import LinesAreasChart from './d3components/lines-areas-chart'
 import RadialChart from './d3components/radial-chart'
 import ArcChart from './d3components/arc-chart'
+import PieChart from './d3components/pie-chart'
 
 const App = () => (
   <Fragment>
@@ -32,6 +33,9 @@ const App = () => (
     <Hr />
     <div>Arc chart: </div>
     <ArcChart />
+    <Hr />
+    <div>Pie chart: </div>
+    <PieChart />
     <Hr />
   </Fragment>
 )
