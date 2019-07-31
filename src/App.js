@@ -12,6 +12,7 @@ import NameValueBarChart from './d3components/name-value-bar-chart'
 import RadialChart from './d3components/radial-chart'
 import ArcChart from './d3components/arc-chart'
 import PieChart from './d3components/pie-chart'
+import ScaleSequentialExamples from './d3components/scale-sequential-examples'
 
 const App = () => (
   <Fragment>
@@ -44,6 +45,9 @@ const App = () => (
     <Hr />
     <div>Pie chart (spread the given values over a full circle):</div>
     <PieChart />
+    <Hr />
+    <div>Scale Sequential Examples (some interpolators provided by D3): </div>
+    <ScaleSequentialExamples />
     <Hr />
   </Fragment>
 )
