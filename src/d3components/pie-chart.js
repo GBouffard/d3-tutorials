@@ -7,7 +7,7 @@ const defaultData = [
   { name: 'Apples', color: 'red', quantity: 20 },
   { name: 'Bananas', color: 'green', quantity: 40 },
   { name: 'Cherries', color: 'cyan', quantity: 50 },
-  { name: 'Damsons', color: 'sand', quantity: 10 },
+  { name: 'Damsons', color: 'goldenrod', quantity: 10 },
   { name: 'Elderberries', quantity: 30 }
 ]
 
@@ -23,7 +23,7 @@ const Styledg = styled.g`
 `
 
 const PieChart = ({
-  data = defaultData,
+  nameValueData = defaultData,
   HeightAndWidth = '200',
   defaultColor = 'purple'
 }) => {
@@ -43,7 +43,7 @@ const PieChart = ({
     // set the areas
     d3.select(gRef.current)
       .selectAll('path')
-      .data(pieGenerator(data))
+      .data(pieGenerator(nameValueData))
       .enter()
       .append('path')
       .attr('d', arcGenerator)
@@ -52,7 +52,7 @@ const PieChart = ({
     // set the areas labels / text .centroid() is used to compute the label positions
     d3.select(gRef.current)
       .selectAll('text')
-      .data(pieGenerator(data))
+      .data(pieGenerator(nameValueData))
       .enter()
       .append('text')
       // nb: not using arrow functions in that case to make sure that 'this' correspond to the text below

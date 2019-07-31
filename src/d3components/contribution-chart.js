@@ -17,10 +17,10 @@ const ContributionContainer = styled.div`
 `
 
 const ContributionChart = ({ dataSet = defaultData }) => {
-  const reference = useRef()
+  const divRef = useRef()
 
   useEffect(() => {
-    d3.select(reference.current)
+    d3.select(divRef.current)
       .selectAll('div')
       .data(dataSet)
       .enter()
@@ -28,7 +28,7 @@ const ContributionChart = ({ dataSet = defaultData }) => {
       .style('background-color', d => (d === 0 ? 'lightgrey' : colorMap(d)))
   })
 
-  return <ContributionContainer ref={reference} />
+  return <ContributionContainer ref={divRef} />
 }
 
 export default ContributionChart

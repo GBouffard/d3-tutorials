@@ -25,7 +25,7 @@ const defaultCircleColor = 'purple'
 const defaultTextColor = 'black'
 
 const CircleSizesXChart = ({
-  data = defaultData,
+  nameValueData = defaultData,
   circleColor = defaultCircleColor,
   textColor = defaultTextColor
 }) => {
@@ -36,7 +36,7 @@ const CircleSizesXChart = ({
     const g = d3
       .select('#svgreference')
       .selectAll('g')
-      .data(data)
+      .data(nameValueData)
       .enter()
       .append('g')
 
