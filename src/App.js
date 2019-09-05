@@ -18,34 +18,34 @@ import ScaleSequentialExamples from "./d3components/scale-sequential-examples";
 
 const App = () => (
   <Fragment>
-    <div>Bar chart: </div>
+    <div>Bar chart:</div>
     <BarChart />
     <Hr />
-    <div>Contribution chart: </div>
+    <div>Contribution chart:</div>
     <ContributionChart />
     <Hr />
-    <div>Circle sizes x chart: </div>
+    <div>Circle sizes x chart:</div>
     <CircleSizesXChart />
     <Hr />
-    <div>Names & Values Circle sizes (with select click): </div>
+    <div>Names & Values Circle sizes (with select click):</div>
     <NameValueCircleSizesChart />
     <Hr />
-    <div>Names & Values bar chart (with sorting button): </div>
+    <div>Names & Values bar chart (with sorting button):</div>
     <NameValueBarChart />
     <Hr />
-    <div>Nice linear scale: </div>
+    <div>Nice linear scale:</div>
     <NiceLinearScale />
     <Hr />
-    <div>Lines chart: </div>
+    <div>Lines chart:</div>
     <LinesChart />
     <Hr />
-    <div>Lines areas chart: </div>
+    <div>Lines areas chart:</div>
     <LinesAreasChart />
     <Hr />
-    <div>Radial chart: </div>
+    <div>Radial chart:</div>
     <RadialChart />
     <Hr />
-    <div>Stack chart: </div>
+    <div>Stack chart:</div>
     <StackChart />
     <Hr />
     <div>Arc chart (spread by angle so do not have to be a full circle)</div>
@@ -54,7 +54,7 @@ const App = () => (
     <div>Pie chart (spread the given values over a full circle):</div>
     <PieChart />
     <Hr />
-    <div>Scale Sequential Examples (some interpolators provided by D3): </div>
+    <div>Scale Sequential Examples (some interpolators provided by D3):</div>
     <ScaleSequentialExamples />
     <Hr />
   </Fragment>
